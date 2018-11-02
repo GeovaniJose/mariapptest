@@ -1,51 +1,57 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import NProgress from 'nprogress'
 
-import Loading from '../Loading/index'
 import api from '../../services/api'
 
 import './styles.css'
 
 export default class Home extends Component {
-    constructor() {
-        super()
+  constructor() {
+    super()
 
-        this.state = {
-            titulos: []
-        }
+    this.state = {
+      titulos: []
     }
+  }
 
-    componentDidMount() {
-        this.loadTitulos()
+  componentDidMount() {
+    NProgress.start()
+    this.loadTitulos()
+  }
+
+  loadTitulos = async () => {
+    try {
+      const response = await api.get(`/titulos`)
+
+      this.setState({ titulos: response.data.docs })
+
+      document.querySelector('#nprogress .bar').style.backgroundColor = "#00b46b";
+      NProgress.done()
+    } catch (err) {
+      console.log(err)
+
+      document.querySelector('#nprogress .bar').style.backgroundColor = "#f00";
+      NProgress.done()
     }
+  }
 
-    loadTitulos = async () => {
-        const response = await api.get(`/titulos`)
+  render() {
+    const { titulos } = this.state
 
-        this.setState({ titulos: response.data.docs })
-    }
-
-    renderTela = (titulos) => (
-        <div className="titulo-list">
-            {titulos.map(titulo => (
-                <article className="card" key={titulo._id}>
-                    <img src={titulo.imageUrl} alt="" />
-                    <section>
-                        <strong>{titulo.name}</strong>
-                        <p>{titulo.desc}</p>
-                        <Link to={`/titulos/${titulo._id}`}>Acessar</Link>
-                    </section>
-                </article>
-            ))}
-        </div>
+    return (
+      <div className="titulo-list">
+        {titulos.map(titulo => (
+          <article className="card" key={titulo._id}>
+            <img src={titulo.imageUrl} alt="" />
+            <section>
+              <strong>{titulo.name}</strong>
+              <p>{titulo.desc}</p>
+              <Link to={`/titulos/${titulo._id}`}>Acessar</Link>
+            </section>
+          </article>
+        ))}
+      </div>
     )
-
-    render() {
-        const { titulos } = this.state
-
-        return (
-            (titulos[0] && this.renderTela(titulos))
-            || <Loading />
-        )
-    }
+  }
 }

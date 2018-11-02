@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import LoadingBar from 'react-redux-loading-bar'
+import NProgress from 'nprogress'
 
 import Loading from '../Loading/index'
 import api from '../../services/api'
@@ -17,11 +17,26 @@ export default class TituloDetalhe extends Component {
   }
 
   async componentDidMount() {
-    const { id } = this.props.match.params;
+    NProgress.start()
+    this.loadTitulo()
+  }
 
-    const response = await api.get(`/titulos/${id}`)
+  loadTitulo = async () => {
+    try {
+      const { id } = this.props.match.params;
 
-    this.setState({ titulo: response.data, historia: response.data.history })
+      const response = await api.get(`/titulos/${id}`)
+
+      this.setState({ titulo: response.data, historia: response.data.history })
+
+      document.querySelector('#nprogress .bar').style.backgroundColor = "#00b46b";
+      NProgress.done()
+    } catch (err) {
+      console.log(err)
+
+      document.querySelector('#nprogress .bar').style.backgroundColor = "#f00";
+      NProgress.done()
+    }
   }
 
   renderTela = (titulo) => (
