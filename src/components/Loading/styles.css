@@ -1,0 +1,6 @@
+.loading-div {
+  width: 100%;
+  height: 3px;
+  background: #0F0;
+  position: fixed;
+}
