@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import NProgress from 'nprogress'
 
-import Loading from '../Loading/index'
 import api from '../../services/api'
 
 import './styles.css'
@@ -30,11 +29,11 @@ export default class TituloDetalhe extends Component {
       this.setState({ titulo: response.data, historia: response.data.history })
 
       document.querySelector('#nprogress .bar').style.backgroundColor = "#00b46b";
-      NProgress.done()
     } catch (err) {
       console.log(err)
 
       document.querySelector('#nprogress .bar').style.backgroundColor = "#f00";
+    } finally {
       NProgress.done()
     }
   }
