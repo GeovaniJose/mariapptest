@@ -1,6 +1,7 @@
 {
   "name": "mariapp",
   "author": "Geovani José (geovani-lol@hotmail.com)",
+  "description": " Simple list of the titles of a wonderful woman, Mary",
   "license": "MIT",
   "version": "0.1.0",
   "private": true,

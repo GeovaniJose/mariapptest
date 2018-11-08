@@ -50,6 +50,10 @@ export default class TituloDetalhe extends Component {
           <h1 className="detalhe-header__title">{titulo.name}</h1>
           <h2 className="detalhe-header__sub">{titulo.day}</h2>
         </div>
+
+        <div className="detalhe-content">
+          {titulo.history.map(hist => <p className="detalhe-content__history">{hist}</p>)}
+        </div>
       </div>
     )
   }
@@ -63,26 +67,3 @@ export default class TituloDetalhe extends Component {
     )
   }
 }
-
-/*
-<div className="titulo-info">
-        <h1>{titulo.name}</h1>
-        <img className="titulo-info__imagem" src={titulo.imageUrl} alt=''></img>
-        <p>{titulo.desc}</p>
-        <p>{
-          titulo.history &&
-          titulo.history.map(hist => hist)
-        }</p>
-        <span>{titulo.day}</span>
-      </div>
-
-<div className="detalhe-container">
-        <div className="detalhe-header">
-          <img className="detalhe-header__imagem" style={{ background:
-            'linear-gradient(transparent, rgba(0, 0, 0, 0.4)), url('
-            + titulo.imageUrl + ') no-repeat' }} alt=''></img>
-          <h1 className="detalhe-header__title">{titulo.name}</h1>
-          <h2 className="detalhe-header__sub">{titulo.day}</h2>
-        </div>
-      </div>
-*/
