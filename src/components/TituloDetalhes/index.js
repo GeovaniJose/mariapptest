@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NProgress from 'nprogress'
 
 import api from '../../services/api'
+import Shares from '../Shares/index'
 
 import './styles.css'
 
@@ -54,6 +55,8 @@ export default class TituloDetalhe extends Component {
         <div className="detalhe-content">
           {titulo.history.map(hist => <p className="detalhe-content__history">{hist}</p>)}
         </div>
+
+        <Shares />
       </div>
     )
   }

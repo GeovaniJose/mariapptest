@@ -1,0 +1,16 @@
+.shares {
+  position: fixed;
+  top: 16em;
+  left: 6em;
+}
+
+.shares__icon {
+  height: 30px;
+  width: 30px;
+  margin-bottom: 7px;
+}
+
+.shares__icon--big {
+  height: 45px;
+  width: 45px;
+}
