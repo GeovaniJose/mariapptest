@@ -29,6 +29,8 @@ export default class TituloDetalhe extends Component {
 
       this.setState({ titulo: response.data, historia: response.data.history })
 
+      this.formatarData()
+
       document.querySelector('#nprogress .bar').style.backgroundColor = "#00b46b";
     } catch (err) {
       console.log(err)
@@ -37,6 +39,14 @@ export default class TituloDetalhe extends Component {
     } finally {
       NProgress.done()
     }
+  }
+
+  formatarData = () => {
+    var options = { month: 'long', day: 'numeric' }
+
+    const day = new Date(this.state.titulo.day).toLocaleDateString('pt-BR', options)
+    
+    this.setState({ titulo: {...this.state.titulo, day} })
   }
 
   loadDetalhe = () => {
@@ -53,7 +63,7 @@ export default class TituloDetalhe extends Component {
         </div>
 
         <div className="detalhe-content">
-          {titulo.history.map(hist => <p className="detalhe-content__history">{hist}</p>)}
+          {titulo.history.map((hist, key) => <p className="detalhe-content__history" key={key}>{hist}</p>)}
         </div>
 
         <Shares />
