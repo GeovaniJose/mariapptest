@@ -6,11 +6,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
+=======
+    "axios": "^0.18.1",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1"
+>>>>>>> cac58de80af1051335005ca487838ec04b93152c
   },
   "scripts": {
     "start": "react-scripts start",
